@@ -1,5 +1,5 @@
 #include <steam/helpers/utils.hpp>
-
+#include <steam/api/steam_api.hpp>
 #include <algorithm>
 
 namespace steam {
@@ -12,8 +12,10 @@ namespace steam {
     }
 
 
-    void addgame(const std::string &appName, const std::fs::path &exePath, const std::string &launchOptions = "", const std::vector<std::string> &tags = { }, bool hidden = false, std::string icon = ""){
+    int addgame(const char *appName, const char *exePath, const char *launchOptions, bool hidden, const char * icon){
         auto users = steam::api::User::getUsers();
-        auto appId = steam::api::addGameShortcut(users.front(), appName, exePath, launchOptions, tags, hidden, icon);
+        auto appId = steam::api::addGameShortcut(users.front(), appName, exePath, launchOptions, { }, hidden, icon);
+
+        return appId->getAppId();
     }
 }

@@ -8,5 +8,5 @@ namespace steam {
     template<typename ... Ts> overloaded(Ts...) -> overloaded<Ts...>;
 
     bool isIntegerString(std::string string);
-
+    int addgame(const char *appName, const char *exePath, const char *launchOptions, bool hidden, const char * icon);
 }
